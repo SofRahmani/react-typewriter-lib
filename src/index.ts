@@ -1,1 +1,1 @@
-export { Typewriter, type TypewriterProps } from './Typewritter'
+export { Typewriter, type TypewriterProps } from './Typewriter'

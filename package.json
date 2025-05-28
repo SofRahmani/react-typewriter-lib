@@ -1,14 +1,26 @@
 {
   "name": "react-typewriter-lib",
   "private": false,
-  "version": "1.1.2",
+  "version": "1.1.4",
   "type": "module",
-  "main": "dist/react-typewriter.cjs.js",
+  "main": "dist/react-typewriter.umd.js",
   "module": "dist/react-typewriter.es.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/react-typewriter.es.js",
+      "require": "./dist/react-typewriter.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "description": "A simple and easy-to-use React component for creating typewriter effects.",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
+    "build:types": "tsc --build tsconfig.build.json",
     "lint": "eslint .",
     "preview": "vite preview"
   },
