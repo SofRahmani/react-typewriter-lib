@@ -3,6 +3,7 @@
   "compilerOptions": {
     "composite": true,            // nécessaire en mode références
     "noEmit": false,             // on émet bien du .d.ts
+    "rootDir": "src",
     "declaration": true,
     "declarationDir": "dist",
     "emitDeclarationOnly": true
