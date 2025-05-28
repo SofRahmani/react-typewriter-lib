@@ -1,30 +1,30 @@
 # React Typewriter Library
 
-A lightweight React component that simulates a typewriter effect on any text string, with optional looping.
+A lightweight React library that simulates a typewriter effect on any text string, with optional looping.
 
 ---
 
 ## Installation
 
-Install via npm:
+Install the library via npm:
 
 ```bash
 npm install react-typewriter-lib
 ```
 
-Or using Yarn:
+Or with Yarn:
 
 ```bash
 yarn add react-typewriter-lib
 ```
 
-> Ensure you have **React** and **ReactDOM** installed as this library declares them as `peerDependencies`.
+> Make sure you have **React** and **ReactDOM** installed, as they are declared as `peerDependencies`.
 
 ---
 
 ## Usage
 
-Import the `Typewriter` component and pass the desired `text` prop. Optionally customize the typing `speed` and enable `loop` mode to restart the animation when complete.
+Import the `Typewriter` component and pass the `text` prop. You can also customize typing `speed`, add a `pause` between typing and deleting, and enable `loop` to repeat the animation.
 
 ```tsx
 import React from 'react';
@@ -34,7 +34,12 @@ export default function App() {
   return (
     <div>
       <h1>
-        <Typewriter text="Hello, world!" speed={100} loop />
+        <Typewriter
+          text="Hello, world!"
+          speed={100}    // Delay in ms between each character
+          pause={1500}   // Pause in ms between typing and deleting
+          loop           // Enables looping (type → pause → delete → pause → ...)
+        />
       </h1>
     </div>
   );
@@ -43,35 +48,42 @@ export default function App() {
 
 ### Props
 
-| Name    | Type      | Default | Description                                         |
-| ------- | --------- | ------- | --------------------------------------------------- |
-| `text`  | `string`  | —       | The string to be typed out.                         |
-| `speed` | `number`  | `100`   | Delay in milliseconds between each character.       |
-| `loop`  | `boolean` | `false` | If `true`, restarts the typing animation on finish. |
+| Name    | Type     | Default | Description                                                                          |
+| ------- | -------- | ------- | ------------------------------------------------------------------------------------ |
+| `text`  | `string` | —       | The string to be typed out.                                                         |
+| `speed` | `number` | `100`   | Interval in milliseconds between each character typed or deleted.                   |
+| `pause` | `number` | `1000`  | Duration of the pause (ms) between the end of typing and the start of deleting, and vice versa. |
+| `loop`  | `boolean`| `false` | If `true`, the text types, pauses, deletes, pauses, then repeats in a loop.         |
 
 ---
 
 ## Configuration
 
-No additional configuration is required. This library is built and bundled with Vite in library mode, supporting both **ESM** and **CommonJS** formats.
+No additional configuration is required. This library is built and bundled with Vite in library mode and supports both **ESM** and **CommonJS** formats.
 
-### Example with Custom Speed
+### Examples
 
-```tsx
-<Typewriter text="Fast typing..." speed={50} />
-```
+- **Fast typing**  
+  ```tsx
+  <Typewriter text="Fast typing..." speed={50} />
+  ```
+- **One-time typing**  
+  ```tsx
+  <Typewriter text="One-shot typing." />
+  ```
 
-### Example without Looping
+---
 
-```tsx
-<Typewriter text="One-shot typing." />
-```
+## Styling and Accessibility
+
+- The component renders a `<span>` element, so you can wrap it or style it as needed (CSS, Tailwind, styled-components, etc.).  
+- For accessibility, consider adding an `aria-label` if the animated text conveys critical information.
 
 ---
 
 ## Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to open an issue or submit a pull request on [GitHub](https://github.com/SofRahmani/react-typewriter-lib).
+Contributions, bug reports, and feature requests are welcome! Please open an issue or submit a pull request on [GitHub](https://github.com/SofRahmani/react-typewriter-lib).
 
 ---
 
