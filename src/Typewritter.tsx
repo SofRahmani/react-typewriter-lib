@@ -19,7 +19,7 @@ export function Typewriter({ text, speed = 100, loop = false }: TypewriterProps)
       }, speed);
 
       while (loop) {
-        loopText(); // Call the function recursively to loop the text infinetely
+        loopText(); 
       }
 
       return () => clearInterval(timer);

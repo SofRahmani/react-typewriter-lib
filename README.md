@@ -1,54 +1,80 @@
-# React + TypeScript + Vite
+# React Typewriter Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight React component that simulates a typewriter effect on any text string, with optional looping.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
 
-## Expanding the ESLint configuration
+Install via npm:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install react-typewriter-lib
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Or using Yarn:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+yarn add react-typewriter-lib
 ```
+
+> Ensure you have **React** and **ReactDOM** installed as this library declares them as `peerDependencies`.
+
+---
+
+## Usage
+
+Import the `Typewriter` component and pass the desired `text` prop. Optionally customize the typing `speed` and enable `loop` mode to restart the animation when complete.
+
+```tsx
+import React from 'react';
+import { Typewriter } from 'react-typewriter-lib';
+
+export default function App() {
+  return (
+    <div>
+      <h1>
+        <Typewriter text="Hello, world!" speed={100} loop />
+      </h1>
+    </div>
+  );
+}
+```
+
+### Props
+
+| Name    | Type      | Default | Description                                         |
+| ------- | --------- | ------- | --------------------------------------------------- |
+| `text`  | `string`  | —       | The string to be typed out.                         |
+| `speed` | `number`  | `100`   | Delay in milliseconds between each character.       |
+| `loop`  | `boolean` | `false` | If `true`, restarts the typing animation on finish. |
+
+---
+
+## Configuration
+
+No additional configuration is required. This library is built and bundled with Vite in library mode, supporting both **ESM** and **CommonJS** formats.
+
+### Example with Custom Speed
+
+```tsx
+<Typewriter text="Fast typing..." speed={50} />
+```
+
+### Example without Looping
+
+```tsx
+<Typewriter text="One-shot typing." />
+```
+
+---
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to open an issue or submit a pull request on [GitHub](https://github.com/SofRahmani/react-typewriter-lib).
+
+---
+
+## License
+
+MIT © Sofiane Rahmani 2025
