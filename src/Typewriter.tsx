@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 export interface TypewriterProps {
   text: string;
@@ -9,57 +9,42 @@ export interface TypewriterProps {
 
 export function Typewriter({ text, speed = 100, loop = false, pause = 1000 }: TypewriterProps) {
   const [displayed, setDisplayed] = useState("");
-  const typingRef = useRef<number | null>(null);
-  const deletingRef = useRef<number | null>(null);
-  const pauseRef = useRef<number | null>(null);
 
   useEffect(() => {
     let isCancelled = false;
+    let i = 0;
+    let mode: "typing" | "deleting" = "typing";
+    let timer: number;
 
-    function clearAllTimers() {
-      if (typingRef.current) clearInterval(typingRef.current);
-      if (deletingRef.current) clearInterval(deletingRef.current);
-      if (pauseRef.current) clearTimeout(pauseRef.current);
-    }
+    function step() {
+      if (isCancelled) return;
 
-    function startTyping() {
-      let i = 0;
-      setDisplayed("");
-      typingRef.current = window.setInterval(() => {
-        setDisplayed((prev) => prev + text.charAt(i));
-        i += 1;
-        if (i >= text.length) {
-          clearInterval(typingRef.current!);
-          if (loop) {
-            pauseRef.current = window.setTimeout(() => {
-              startDeleting();
-            }, pause);
-          }
+      if (mode === "typing") {
+        if (i < text.length) {
+          setDisplayed(text.slice(0, i + 1));
+          i++;
+          timer = window.setTimeout(step, speed);
+        } else if (loop) {
+          mode = "deleting";
+          timer = window.setTimeout(step, pause);
         }
-      }, speed);
-    }
-
-    function startDeleting() {
-      let i = text.length;
-      deletingRef.current = window.setInterval(() => {
-        setDisplayed((prev) => prev.slice(0, -1));
-        i -= 1;
-        if (i <= 0) {
-          clearInterval(deletingRef.current!);
-          if (loop && !isCancelled) {
-            pauseRef.current = window.setTimeout(() => {
-              startTyping();
-            }, pause);
-          }
+      } else {
+        if (i > 0) {
+          setDisplayed(text.slice(0, i - 1));
+          i--;
+          timer = window.setTimeout(step, speed);
+        } else if (loop) {
+          mode = "typing";
+          timer = window.setTimeout(step, pause);
         }
-      }, speed);
+      }
     }
 
-    startTyping();
+    step();
 
     return () => {
       isCancelled = true;
-      clearAllTimers();
+      clearTimeout(timer);
     };
   }, [text, speed, loop, pause]);
 

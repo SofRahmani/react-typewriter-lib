@@ -1,7 +1,7 @@
 {
   "name": "react-typewriter-lib",
   "private": false,
-  "version": "1.2.0",
+  "version": "1.2.1",
   "type": "module",
   "main": "dist/react-typewriter.umd.js",
   "module": "dist/react-typewriter.es.js",

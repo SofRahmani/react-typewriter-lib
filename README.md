@@ -18,13 +18,13 @@ Or with Yarn:
 yarn add react-typewriter-lib
 ```
 
-> Make sure you have **React** and **ReactDOM** installed, as they are declared as `peerDependencies`.
+> This library declares **React** and **ReactDOM** as `peerDependencies`, so ensure they are installed in your project.
 
 ---
 
 ## Usage
 
-Import the `Typewriter` component and pass the `text` prop. You can also customize typing `speed`, add a `pause` between typing and deleting, and enable `loop` to repeat the animation.
+Import the `Typewriter` component and pass the `text` prop. You can also customize the typing `speed`, set a `pause` between typing and deleting, and enable `loop` to repeat the animation.
 
 ```tsx
 import React from 'react';
@@ -48,26 +48,26 @@ export default function App() {
 
 ### Props
 
-| Name    | Type     | Default | Description                                                                          |
-| ------- | -------- | ------- | ------------------------------------------------------------------------------------ |
-| `text`  | `string` | —       | The string to be typed out.                                                         |
-| `speed` | `number` | `100`   | Interval in milliseconds between each character typed or deleted.                   |
-| `pause` | `number` | `1000`  | Duration of the pause (ms) between the end of typing and the start of deleting, and vice versa. |
-| `loop`  | `boolean`| `false` | If `true`, the text types, pauses, deletes, pauses, then repeats in a loop.         |
+| Name    | Type      | Default | Description                                                                           |
+| ------- | --------- | ------- | ------------------------------------------------------------------------------------- |
+| `text`  | `string`  | —       | The string to be typed out.                                                          |
+| `speed` | `number`  | `100`   | Delay in milliseconds between each character typed or deleted.                        |
+| `pause` | `number`  | `1000`  | Duration of the pause (ms) between the end of typing and the start of deleting, and vice versa. |
+| `loop`  | `boolean` | `false` | If `true`, the text types, pauses, deletes, pauses, then repeats in a loop.          |
 
 ---
 
 ## Configuration
 
-No additional configuration is required. This library is built and bundled with Vite in library mode and supports both **ESM** and **CommonJS** formats.
+No additional configuration is required. This library is built and bundled with Vite in library mode, supporting both **ESM** and **CommonJS** formats.
 
 ### Examples
 
-- **Fast typing**  
+- **Fast typing**
   ```tsx
   <Typewriter text="Fast typing..." speed={50} />
   ```
-- **One-time typing**  
+- **One-time typing**
   ```tsx
   <Typewriter text="One-shot typing." />
   ```
@@ -76,7 +76,7 @@ No additional configuration is required. This library is built and bundled with 
 
 ## Styling and Accessibility
 
-- The component renders a `<span>` element, so you can wrap it or style it as needed (CSS, Tailwind, styled-components, etc.).  
+- The component renders a `<span>`, so you can wrap or style it as needed (CSS, Tailwind, styled-components, etc.).  
 - For accessibility, consider adding an `aria-label` if the animated text conveys critical information.
 
 ---
